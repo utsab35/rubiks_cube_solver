@@ -1,4 +1,4 @@
-
+//Created by Utsab Mandal
 
 #include<bits/stdc++.h>
 #include "../Model/RubiksCube.h"
