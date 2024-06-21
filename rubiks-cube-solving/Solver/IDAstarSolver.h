@@ -1,6 +1,4 @@
-//
-// Created by Lakshya Mittal on 01-02-2022.
-//
+
 
 #include<bits/stdc++.h>
 #include "../Model/RubiksCube.h"
