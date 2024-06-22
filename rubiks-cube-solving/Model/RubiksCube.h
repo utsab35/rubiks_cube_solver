@@ -1,6 +1,4 @@
-//
-// Created by Shubham Patil on 17/12/21.
-//
+// created by Utsab Mandal
 
 #ifndef RUBIKS_CUBE_SOLVER_RUBIKSCUBE_H
 #define RUBIKS_CUBE_SOLVER_RUBIKSCUBE_H
@@ -9,10 +7,10 @@
 
 using namespace std;
 
-/**
+/*
  * A base class for all Rubik's Cube Model. There are various representation for Rubik's Cube.
  * Each one has it's own special ways of definitions. This class provides a shared functionality
- * between all models.
+ * between all models. This serves as a base class for all the models.
  * We'll benchmark all models and observe which one is better for performance.
  */
 
@@ -130,7 +128,7 @@ public:
     RubiksCube &invert(MOVE ind);
 
     /*
-     * Rotational Moves on the Rubik Cubes
+     *  introducing the different Rotational Moves on the Rubik Cubes
      *
      * F, F’, F2,
      * U, U’, U2,

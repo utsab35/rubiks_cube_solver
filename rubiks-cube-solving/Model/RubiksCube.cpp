@@ -1,12 +1,11 @@
-//
-// Created by Shubham Patil on 17/12/21.
-//
+// created by Utsab Mandal
 
 #include "RubiksCube.h"
 
-//
-//Given a color return it's first letter
-//
+/*
+ * returns the first letter for a given colour
+ * eg -> 'B' for Blue
+ */
 
 char RubiksCube::getColorLetter(COLOR color) {
     switch (color) {
