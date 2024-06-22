@@ -9,9 +9,16 @@
  */
 
 
+
+/*
+ * This is a derived class which inherits from the base class RubiksCube
+ */
 class RubiksCube3dArray : public RubiksCube {
 private:
 
+    /*
+     * This function rotates a given face of a cube by 90 degrees in the clockwise direction
+     */
     void rotateFace(int ind) {
         char temp_arr[3][3] = {};
         for (int i = 0; i < 3; i++) {
@@ -32,6 +39,7 @@ public:
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
                 for (int k = 0; k < 3; k++)
+                    // getColorLetter returns the first letter of the colour given to it
                     cube[i][j][k] = getColorLetter(COLOR(i));
             }
         }
@@ -55,6 +63,9 @@ public:
         }
     }
 
+    /*
+     * Checking if the rubiks cube is solved.
+     */
     bool isSolved() const override {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
@@ -67,6 +78,7 @@ public:
         return true;
     }
 
+    // performing the U operation
     RubiksCube &u() override {
         this->rotateFace(0);
 

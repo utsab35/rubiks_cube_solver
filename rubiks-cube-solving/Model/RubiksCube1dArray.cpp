@@ -2,6 +2,11 @@
 
 #include "RubiksCube.h"
 
+/*
+ * representing the rubiks cube in an array of size 54
+ * cube[i] -- > colour of the i-th cubie
+ */
+
 class RubiksCube1dArray : public RubiksCube {
 private:
 
@@ -32,6 +37,10 @@ public:
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
                 for (int k = 0; k < 3; k++) {
+                    /*
+                     * getColorLetter returns the first letter of the colour given to it.
+                     *  It returns the colour correspondin to the 'COLOR' class in the base class
+                     */
                     cube[i * 9 + j * 3 + k] = getColorLetter(COLOR(i));
                 }
             }

@@ -14,15 +14,25 @@ using namespace std;
  * We'll benchmark all models and observe which one is better for performance.
  */
 
+
+
 /*
  * This is the BASE CLASS for the various models of a rubiks cube like the 1d, 3d representations
  */
 
 class RubiksCube {
 public:
-    // enums are used as they are basically a optionset
+    // enums are used as they are basically a optionlist.
 
     // face could be any one of the below 6 types
+    /*
+     * 0 ---> Up
+     * 1 ---> Left
+     * 2 ---> Front
+     * 3 ---> Right
+     * 4 ---> Back
+     * 5 ---> Down
+     */
     enum class FACE {
         UP,
         LEFT,
@@ -33,6 +43,7 @@ public:
     };
 
     // colour could be any one of the below 6 types
+
     enum class COLOR {
         WHITE,
         GREEN,
@@ -52,14 +63,21 @@ public:
         B, BPRIME, B2
     };
 
+
+    /******* These all will be implemented in the derived classes which represents the various models ********/
+
+
     /*
      * Returns the color of the cell at (row, col) in face.
      * If Rubik's Cube face is pointing at you, then the row numbering starts from the
      * top to bottom, and column numbering starts from the left to right.
+     *
      * The rows and columns are 0-indexed.
-     * Face, row, and column index
+     * Face, row, and column index are the data given to the function
      */
     virtual COLOR getColor(FACE face, unsigned row, unsigned col) const = 0;
+
+
 
     /*
      * This function returns the first letter of the colour given
@@ -67,18 +85,33 @@ public:
      */
     static char getColorLetter(COLOR color);
 
+
+
     /*
      * This function returns true if the Rubik Cube is solved, otherwise returns false.
      */
     virtual bool isSolved() const = 0;
+
+
 
     /*
      * Returns the move in the string format.
      */
     static string getMove(MOVE ind);
 
-    /*
-     * Print the Rubik Cube in Planar format.
+
+
+    /* The print function is defined in the base class and later this will be used in the derived classes
+     *
+     * Printing the Rubik Cube in Planar format.
+     *
+     *
+     * U -> Up
+     * F -> Front
+     * R -> Right
+     * B -> Back
+     * D -> Down
+     * L -> Left
      *
      * The cube is laid out as follows.
      *
@@ -86,6 +119,7 @@ public:
      *    U
      *  L F R B
      *    D
+     *
      *
      * Color wise:
      *
@@ -101,7 +135,7 @@ public:
      *          Y Y Y
      *          Y Y Y
      *
-     * Row and Column Numberings:
+     * Row and Column Numberings are done in the following way :
      * rx -> row numbering
      * cx -> column numbering
      * bx -> both row and column numbering
@@ -120,6 +154,9 @@ public:
      *
      */
     void print() const;
+
+
+
 
     /*
      * Randomly shuffle the cube with 'times' moves and returns a vector containing the moves performed to shuffle the cube, in order
