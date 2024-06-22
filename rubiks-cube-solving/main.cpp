@@ -1,4 +1,4 @@
-/*made by Utsab Mandal*/
+/* This project is made by Utsab Mandal*/
 
 #include <bits/stdc++.h>
 //#include "Model/RubiksCube3dArray.cpp"
@@ -270,8 +270,15 @@ int main() {
 //    dbMaker.bfsAndStore();
 
     RubiksCubeBitboard cube;
+    // shuffling the rubiks cube using 'times' number of moves
+
+
     auto shuffleMoves = cube.randomShuffleCube(13);
     cube.print();
+
+
+    // the moves used to shuffle the cube are being printed here
+    cout << "The rubiks cube has been shuffled using the moves --- > " ;
     for (auto move: shuffleMoves) cout << cube.getMove(move) << " ";
     cout << "\n";
 
@@ -279,6 +286,8 @@ int main() {
     auto moves = idaStarSolver.solve();
 
     idaStarSolver.rubiksCube.print();
+    // the moves used to solve the shuffled rubiks cube are printed here
+    cout << "The rubiks cube has been solved using the following moves --- > " ;
     for (auto move: moves) cout << cube.getMove(move) << " ";
     cout << "\n";
 

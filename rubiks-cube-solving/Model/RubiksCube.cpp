@@ -1,5 +1,7 @@
-// created by Utsab Mandal
+// Created by Utsab Mandal
 
+
+// importing everything from the RubiksCube.h file here
 #include "RubiksCube.h"
 
 /*
@@ -7,6 +9,7 @@
  * eg -> 'B' for Blue
  */
 
+/*This function is defined in the .h file */
 char RubiksCube::getColorLetter(COLOR color) {
     switch (color) {
         case COLOR::BLUE:
@@ -204,6 +207,7 @@ void RubiksCube::print() const {
     cout << "\n";
 }
 
+// shuffling the rubiks cube randomly and returning the vector used to store the moves used to shuffle the rubiks cube
 vector<RubiksCube::MOVE> RubiksCube::randomShuffleCube(unsigned int times) {
     vector<MOVE> moves_performed;
     srand(time(0));

@@ -1,4 +1,4 @@
-// created by Utsab Mandal
+// Created by Utsab Mandal
 
 #ifndef RUBIKS_CUBE_SOLVER_RUBIKSCUBE_H
 #define RUBIKS_CUBE_SOLVER_RUBIKSCUBE_H
@@ -14,8 +14,15 @@ using namespace std;
  * We'll benchmark all models and observe which one is better for performance.
  */
 
+/*
+ * This is the BASE CLASS for the various models of a rubiks cube like the 1d, 3d representations
+ */
+
 class RubiksCube {
 public:
+    // enums are used as they are basically a optionset
+
+    // face could be any one of the below 6 types
     enum class FACE {
         UP,
         LEFT,
@@ -25,6 +32,7 @@ public:
         DOWN
     };
 
+    // colour could be any one of the below 6 types
     enum class COLOR {
         WHITE,
         GREEN,
@@ -34,6 +42,7 @@ public:
         YELLOW
     };
 
+    // move could be any one of the below 6 types
     enum class MOVE {
         L, LPRIME, L2,
         R, RPRIME, R2,
@@ -48,18 +57,18 @@ public:
      * If Rubik's Cube face is pointing at you, then the row numbering starts from the
      * top to bottom, and column numbering starts from the left to right.
      * The rows and columns are 0-indexed.
-     * @param Face, row, and column index
+     * Face, row, and column index
      */
     virtual COLOR getColor(FACE face, unsigned row, unsigned col) const = 0;
 
     /*
-     * Returns the first letter of the given COLOR
-     * Eg: For COLOR::GREEN, it returns 'G'
+     * This function returns the first letter of the colour given
+     * eg -> returns 'R' for the colour 'RED'
      */
     static char getColorLetter(COLOR color);
 
     /*
-     * Returns true if the Rubik Cube is solved, otherwise returns false.
+     * This function returns true if the Rubik Cube is solved, otherwise returns false.
      */
     virtual bool isSolved() const = 0;
 
@@ -113,7 +122,7 @@ public:
     void print() const;
 
     /*
-     * Randomly shuffle the cube with 'times' moves and returns the moves performed.
+     * Randomly shuffle the cube with 'times' moves and returns a vector containing the moves performed to shuffle the cube, in order
      */
     vector<MOVE> randomShuffleCube(unsigned int times);
 
@@ -128,7 +137,7 @@ public:
     RubiksCube &invert(MOVE ind);
 
     /*
-     *  introducing the different Rotational Moves on the Rubik Cubes
+     *  mentioning the 18 different fundamental operations in a rubiks cube
      *
      * F, F’, F2,
      * U, U’, U2,
