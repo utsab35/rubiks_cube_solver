@@ -1,4 +1,4 @@
-// created by Utsab Mandal
+// Created by Utsab Mandal
 
 #include "RubiksCube.h"
 
