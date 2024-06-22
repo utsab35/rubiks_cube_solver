@@ -11,7 +11,7 @@ class RubiksCube1dArray : public RubiksCube {
 private:
 
     /*
-     * Given a face index, row and col, return it's flattened index
+     * Given a face index, row and col, return it's flattened index or return its index in the 1D array
      */
     static inline int getIndex(int ind, int row, int col) {
         return (ind * 9) + (row * 3) + col;
@@ -33,6 +33,7 @@ private:
 public:
     char cube[54]{};
 
+    // This constructor intializes a uniform fully solved rubiks cube ans stores it in the 1D array
     RubiksCube1dArray() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {

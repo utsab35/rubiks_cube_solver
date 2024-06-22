@@ -42,6 +42,7 @@ public:
         DOWN
     };
 
+
     // colour could be any one of the below 6 types
 
     enum class COLOR {

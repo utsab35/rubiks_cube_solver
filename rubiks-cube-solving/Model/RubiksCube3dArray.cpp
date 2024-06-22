@@ -35,6 +35,7 @@ private:
 public:
     char cube[6][3][3]{};
 
+    // This constructor intializes a uniform fully solved rubiks cube and stores it in the 3D array
     RubiksCube3dArray() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
