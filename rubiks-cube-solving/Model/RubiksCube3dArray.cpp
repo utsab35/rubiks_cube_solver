@@ -1,6 +1,13 @@
-//Created by Utsab Mandal
+// Created by Utsab Mandal
 
 #include "RubiksCube.h"
+
+
+/*
+ * storing the rubiks cube in a 3D array 'cube' of size 6 X 3 X 3
+ * cube[i][j][k] --->  colour of the ith side, jth row and kth column
+ */
+
 
 class RubiksCube3dArray : public RubiksCube {
 private:
