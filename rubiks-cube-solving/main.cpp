@@ -1,12 +1,12 @@
 /* This project is made by Utsab Mandal*/
 
 #include <bits/stdc++.h>
-//#include "Model/RubiksCube3dArray.cpp"
+#include "Model/RubiksCube3dArray.cpp"
 //#include "Model/RubiksCube1dArray.cpp"
 //#include "Model/RubiksCubeBitboard.cpp"
-#include "Solver/DFSSolver.h"
-#include "Solver/BFSSolver.h"
-#include "Solver/IDDFSSolver.h"
+// #include "Solver/DFSSolver.h"
+// #include "Solver/BFSSolver.h"
+// #include "Solver/IDDFSSolver.h"
 #include "Solver/IDAstarSolver.h"
 //#include "PatternDatabases/CornerPatternDatabase.h"
 #include "PatternDatabases/CornerDBMaker.h"
@@ -262,6 +262,12 @@ int main() {
 //    cout << (int)cornerDB.getNumMoves(cube) << "\n";
 
 
+
+
+
+
+
+
 // CornerDBMaker Testing --------------------------------------------------------------------------
     string fileName = "C:\\Users\\Utsab Mandal\\CLionProjects\\rubiks_cube\\rubiks-cube-solving\\Databases\\cornerDepth5V1.txt";
 
@@ -286,11 +292,29 @@ int main() {
     auto moves = idaStarSolver.solve();
 
     idaStarSolver.rubiksCube.print();
+    
     // the moves used to solve the shuffled rubiks cube are printed here
     cout << "The rubiks cube has been solved using the following moves --- > " ;
     for (auto move: moves) cout << cube.getMove(move) << " ";
     cout << "\n";
 
+    /*
+    RubiksCube3dArray object3DArray;
+    auto moves = object3DArray.randomShuffleCube(4);
+    for(auto x:moves) cout<<object3DArray.getMove(x)<<" ";
+    cout<<endl;
+    object3DArray.print();
+
+    if(object3DArray.isSolved()) cout<<"solved"<<endl;
+    else cout << "Not Solved" <<endl;
+
+    unsigned int n = moves.size();
+    for(int i = n - 1; i >= 0; i--) {
+        object3DArray.invert(moves[i]);
+    }
+
+    object3DArray.print();
+    */
 
     return 0;
 }

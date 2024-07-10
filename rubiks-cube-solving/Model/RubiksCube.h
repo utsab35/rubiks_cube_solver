@@ -54,7 +54,7 @@ public:
         YELLOW
     };
 
-    // move could be any one of the below 6 types
+    // move could be any one of the below 18 types
     enum class MOVE {
         L, LPRIME, L2,
         R, RPRIME, R2,
@@ -75,6 +75,8 @@ public:
      *
      * The rows and columns are 0-indexed.
      * Face, row, and column index are the data given to the function
+     *
+     * This function is only implemented in the three representations of the rubiks cube
      */
     virtual COLOR getColor(FACE face, unsigned row, unsigned col) const = 0;
 

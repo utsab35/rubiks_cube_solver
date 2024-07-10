@@ -5,12 +5,14 @@
 class RubiksCubeBitboard : public RubiksCube {
 
 private:
-    uint64_t solved_side_config[6]{};
 
-    int arr[3][3] = {{0, 1, 2},
+    uint64_t solved_side_config[6]{};   // used to store the state of a fully solved rubiks cube
+
+    int arr[3][3] = {{0, 1, 2},     // The indices of the rubiks cube are being mapped here
                      {7, 8, 3},
                      {6, 5, 4}};
 
+    /* to extract the color of a single cubie or to extract the color of a side of three cubies */
     uint64_t one_8 = (1 << 8) - 1, one_24 = (1 << 24) - 1;
 
     void rotateFace(int ind) {
@@ -72,34 +74,49 @@ private:
 //        }
 //    }
 
-public:
-    uint64_t bitboard[6]{};
 
+
+public:
+
+    /*
+     * Creating the rubiks cube using a custom constructor
+     * unit64_t is used to represent a 64 bit number
+     */
+
+    uint64_t bitboard[6]{};
     RubiksCubeBitboard() {
         for (int side = 0; side < 6; side++) {
             uint64_t clr = 1 << side;
             bitboard[side] = 0;
             for (int faceIdx = 0; faceIdx < 8; faceIdx++) {
+                // generating the 64 bit number, here basically placing the same number side by side
                 bitboard[side] |= clr << (8 * faceIdx);
             }
             solved_side_config[side] = bitboard[side];
         }
     }
 
+
     COLOR getColor(FACE face, unsigned row, unsigned col) const override {
-        int idx = arr[row][col];
+        int idx = arr[row][col];  // getting the index from the map array
+
+        /*
+         * returning the color from the enum COLOR according to the face
+         */
         if (idx == 8) return (COLOR)((int) face);
 
         uint64_t side = bitboard[(int) face];
         uint64_t color = (side >> (8 * idx)) & one_8;
 
         int bit_pos = 0;
+        // finding the first positon from the end where the bit is set
         while (color != 0) {
             color = color >> 1;
             bit_pos++;
         }
         return (COLOR)(bit_pos - 1);
     }
+
 
     bool isSolved() const override {
         for (int i = 0; i < 6; i++) {
@@ -109,8 +126,13 @@ public:
     }
 
     RubiksCube &u() override {
-        this->rotateFace(0);
-        uint64_t temp = bitboard[2] & one_24;
+        this->rotateFace(0);  // rotating the top side
+        uint64_t temp = bitboard[2] & one_24;   // taking three pieces into consideration
+
+        /*
+         * First make the last three stickers 0 and then update them from the next
+         */
+
         bitboard[2] = (bitboard[2] & ~one_24) | (bitboard[3] & one_24);
         bitboard[3] = (bitboard[3] & ~one_24) | (bitboard[4] & one_24);
         bitboard[4] = (bitboard[4] & ~one_24) | (bitboard[1] & one_24);

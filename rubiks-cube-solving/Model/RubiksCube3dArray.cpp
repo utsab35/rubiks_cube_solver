@@ -18,6 +18,7 @@ private:
 
     /*
      * This function rotates a given face of a cube by 90 degrees in the clockwise direction
+     * This function is needed as not only the corner pieces and the edge pieces change the color but the center pieces also do
      */
     void rotateFace(int ind) {
         char temp_arr[3][3] = {};
@@ -35,12 +36,15 @@ private:
 public:
     char cube[6][3][3]{};
 
-    // This constructor intializes a uniform fully solved rubiks cube and stores it in the 3D array
+    /*
+     * This constructor intializes a uniform fully solved rubiks cube and stores it in the 3D array
+     * Constructor name should be the same as the name of the derived class
+    */
     RubiksCube3dArray() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
                 for (int k = 0; k < 3; k++)
-                    // getColorLetter returns the first letter of the colour given to it
+                    // getColorLetter returns the first letter of the colour given to i
                     cube[i][j][k] = getColorLetter(COLOR(i));
             }
         }
@@ -94,6 +98,7 @@ public:
     }
 
     RubiksCube &uPrime() override {
+        // this is method chaining
         this->u();
         this->u();
         this->u();
@@ -259,6 +264,10 @@ public:
         return true;
     }
 
+    /*
+     * This assignment operator is needed to properly to assign one object to the other
+     * Otherwsie the default assignment operator might just perform shallow copy
+     */
     RubiksCube3dArray &operator=(const RubiksCube3dArray &r1) {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
@@ -271,6 +280,11 @@ public:
     }
 };
 
+
+/*
+ * The Hash3d struct provides a way to generate unique hash values for RubiksCube3dArray objects.
+ * This is necessary for using RubiksCube3dArray objects as keys in hash-based containers like std::unordered_map or std::unordered_set.
+ */
 struct Hash3d {
     size_t operator()(const RubiksCube3dArray &r1) const {
         string str = "";

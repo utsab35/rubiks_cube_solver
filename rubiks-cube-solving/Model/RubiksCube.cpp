@@ -28,7 +28,7 @@ char RubiksCube::getColorLetter(COLOR color) {
 }
 
 /*
- * Describe a move using an index
+ * Describe a move using an index. It takes a value of the enum 'Move' as index and returns the string format
  */
 string RubiksCube::getMove(MOVE ind) {
     switch (ind) {
@@ -162,6 +162,7 @@ RubiksCube &RubiksCube::invert(MOVE ind) {
 void RubiksCube::print() const {
     cout << "Rubik's Cube:\n\n";
 
+    // printing the upper face
     for (int row = 0; row <= 2; row++) {
         for (unsigned i = 0; i < 7; i++) cout << " ";
         for (int col = 0; col <= 2; col++) {
@@ -215,11 +216,19 @@ vector<RubiksCube::MOVE> RubiksCube::randomShuffleCube(unsigned int times) {
         unsigned int selectMove = (rand() % 18);
         moves_performed.push_back(static_cast<MOVE>(selectMove));
         this->move(static_cast<MOVE>(selectMove));
+        // generating a random number between 0 to 17 corresponding to the 18 different moves
+        // then that number is type casted to 'enum' type using static_cast<MOVE>
+        // then the move function is called to perfrom this move
+        // the 'this->' is used to ensure that the 'move' function being called is the one beloning to the current instance of the 'RubiksCube'class
     }
     return moves_performed;
 }
 
-//Helper function returns string of corner
+
+/*
+ * Helper function returns string of corner
+ * There are a total of 8 corners in a rubiks , so we are getting the colors that build up to the corner
+ */
 string RubiksCube::getCornerColorString(uint8_t ind) const {
     string str = "";
 
